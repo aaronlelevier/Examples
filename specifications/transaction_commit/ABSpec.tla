@@ -34,6 +34,8 @@ Init == /\ AVar \in Data \X {1}
 (* can send its next message.  Sending is described by action A and        *)
 (* receiving by action B.                                                  *)
 (***************************************************************************)
+
+\* send
 A == /\ AVar = BVar
      /\ \E d \in Data: AVar' = <<d, 1 - AVar[2]>>
      /\ BVar' = BVar
@@ -62,6 +64,6 @@ Inv == (AVar[2] = BVar[2]) => (AVar = BVar)
 FairSpec == Spec /\ WF_vars(Next) 
 =============================================================================
 \* Modification History
-\* Last modified Thu Dec 30 09:40:07 PST 2021 by aaron
+\* Last modified Sat Jan 01 07:14:28 PST 2022 by aaron
 \* Last modified Wed Oct 18 04:07:37 PDT 2017 by lamport
 \* Created Fri Sep 04 07:08:22 PDT 2015 by lamport
