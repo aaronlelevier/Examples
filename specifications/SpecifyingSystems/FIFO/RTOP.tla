@@ -1,7 +1,7 @@
 -------------------------------- MODULE RTOP --------------------------------
 CONSTANT P, R
 
-VARIABLES ptor, rtop
+VARIABLE ptor, rtop
 
 vars == <<ptor, rtop>>
 
@@ -9,7 +9,7 @@ TypeOK  ==  /\ ptor \in [P -> SUBSET R]
             /\ rtop \in [R -> SUBSET P]
 
 Init ==
-    /\ ptor = [p \in P |-> (CHOOSE r \in SUBSET R: r # {})]
+    /\ ptor = [p \in P |-> (CHOOSE r \in SUBSET R: TRUE)]
     /\ rtop = [r \in R |-> {p \in P : r \in ptor[p]}]
 
 PAddR(p, r) ==
@@ -22,8 +22,8 @@ Next ==
 
 Spec == Init /\ [][Next]_<<vars>>
 -----------------------------------------------------------------------------
-THEOREM Spec => Init /\ []TypeOK
+THEOREM Spec => []TypeOK
 =============================================================================
 \* Modification History
-\* Last modified Sat Jan 22 20:02:13 PST 2022 by aaron
+\* Last modified Sun Jan 23 11:10:52 PST 2022 by aaron
 \* Created Sat Jan 22 09:52:31 PST 2022 by aaron
